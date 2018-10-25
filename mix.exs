@@ -39,8 +39,6 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
 
   defp deps do
     [
-      # {:commanded, ">= 0.16.0", runtime: false},
-      {:commanded, github: "commanded/commanded", branch: "master", runtime: false},
       # {:eventstore, ">= 0.14.0"},
       {:eventstore, github: "commanded/eventstore", branch: "master"},
 
@@ -48,6 +46,13 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
       {:ex_doc, "~> 0.19", only: :dev},
       {:mix_test_watch, "~> 0.9", only: :dev},
       {:mox, "~> 0.4", only: :test}
+      {:commanded,
+        github:  "commanded/commanded", branch: "master",
+        runtime: false,
+        only:    :test},
+      # {:commanded, ">= 0.16.0", runtime: false, only: test},
+
+
     ]
   end
 
