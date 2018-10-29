@@ -2,6 +2,11 @@ defmodule Commanded.EventStore.Adapters.EventStore do
   @moduledoc """
   [EventStore](https://github.com/commanded/eventstore) adapter for
   [Commanded](https://github.com/commanded/commanded).
+
+  **Note** the multiple EventStore modules referenced in this adapter:
+    * The external event persistence library by Ben Smith (`EventStore`)
+    * The internal EventStore behaviour (`Commanded.EventStore`)
+    * The internal EventStore adapter   (`Commanded.EventStore.Adapters.EventStore`)
   """
 
   @behaviour Commanded.EventStore
@@ -10,8 +15,11 @@ defmodule Commanded.EventStore.Adapters.EventStore do
 
   alias Commanded.EventStore.{EventData, RecordedEvent, SnapshotData}
 
-  @impl Commanded.EventStore
-  def child_spec, do: []
+  """
+  Making it conform to changes in `toraritte/commanded` commit
+  https://github.com/toraritte/commanded/commit/a2a6302abcbe35f0aa44fe6d7149c211f95ca344
+  that removed `child_spec/0` from `Commanded.EventStore` behaviour.
+  """
 
   @impl Commanded.EventStore
   def append_to_stream(stream_uuid, expected_version, events) do
