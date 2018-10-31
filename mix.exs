@@ -117,7 +117,7 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
   defp deps do
     [
       {:commanded, "~> 0.18", runtime: Mix.env() == :test},
-      {:eventstore, "~> 0.16"},
+      {:eventstore, github: "toraritte/eventstore", branch: "master"},
 
       # Optional dependencies
       {:jason, "~> 1.1", optional: true},
