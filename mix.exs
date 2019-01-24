@@ -116,7 +116,17 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
   """
   defp deps do
     [
-      {:commanded, "~> 0.18", runtime: Mix.env() == :test},
+      # 2019-01-24_1359 TODO !!!
+      # Figure out whether Commanded is needed as dependency
+      # or  not. Overwrote  previous  history when  rebasing
+      # `upstream/master`,  and  didn't pay  attention,  and
+      # there  was a  commit  called  "Remove commanded  and
+      # eventstore from deps"...
+      # {:commanded, "~> 0.18", runtime: Mix.env() == :test},
+      {:commanded,
+        github:   "toraritte/commanded",
+        branch:   "make-application-more-idiomatic-2",
+      },
       {:eventstore, github: "toraritte/eventstore", branch: "master"},
 
       # Optional dependencies
