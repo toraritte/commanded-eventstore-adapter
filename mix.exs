@@ -57,6 +57,12 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
       it to  move it to `commanded/eventstore`.  Why would
       the  latter  need the  behaviour  when  it's API  is
       explicitly set out?
+
+      2019-02-12_1346 NOTE
+      Re-adding `runtime: ...` didn't  matter. Fuck it, it
+      looks good  as it  is, and  just overriding  in main
+      project. Commanded  here is  a test  dependency only
+      anyway to make sure it conforms to the behaviour.
       """
       {:commanded,
         github:   "toraritte/commanded",
