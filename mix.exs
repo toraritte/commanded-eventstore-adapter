@@ -35,35 +35,36 @@ defmodule Commanded.EventStore.Adapters.EventStore.Mixfile do
   end
 
   defp elixirc_paths(_), do: ["lib"]
+
+  # 2019-01-24_1359 TODO !!!
+  @doc """
+  Figure out whether Commanded is needed as dependency
+  or  not. Overwrote  previous  history when  rebasing
+  `upstream/master`,  and  didn't pay  attention,  and
+  there  was a  commit  called  "Remove commanded  and
+  eventstore from deps"...
+  {:commanded, "~> 0.18", runtime: Mix.env() == :test},
+
+  2019-02-12_1332 NOTE
+  The  `runtime: Mix.env()  ==  :test`  part has  been
+  re-added,  otherwise  both   this  and  the  project
+  pulling Commanded in would fail to get deps.
+
+  Was  also  thinking  about  where  the  `EventStore`
+  behaviour should reside, and  came to the conclusion
+  that this is  good as it is, and  I was overthinking
+  it to  move it to `commanded/eventstore`.  Why would
+  the  latter  need the  behaviour  when  it's API  is
+  explicitly set out?
+
+  2019-02-12_1346 NOTE
+  Re-adding `runtime: ...` didn't  matter. Fuck it, it
+  looks good  as it  is, and  just overriding  in main
+  project. Commanded  here is  a test  dependency only
+  anyway to make sure it conforms to the behaviour.
+  """
   defp deps do
     [
-      # 2019-01-24_1359 TODO !!!
-      @doc """
-      Figure out whether Commanded is needed as dependency
-      or  not. Overwrote  previous  history when  rebasing
-      `upstream/master`,  and  didn't pay  attention,  and
-      there  was a  commit  called  "Remove commanded  and
-      eventstore from deps"...
-      {:commanded, "~> 0.18", runtime: Mix.env() == :test},
-
-      2019-02-12_1332 NOTE
-      The  `runtime: Mix.env()  ==  :test`  part has  been
-      re-added,  otherwise  both   this  and  the  project
-      pulling Commanded in would fail to get deps.
-
-      Was  also  thinking  about  where  the  `EventStore`
-      behaviour should reside, and  came to the conclusion
-      that this is  good as it is, and  I was overthinking
-      it to  move it to `commanded/eventstore`.  Why would
-      the  latter  need the  behaviour  when  it's API  is
-      explicitly set out?
-
-      2019-02-12_1346 NOTE
-      Re-adding `runtime: ...` didn't  matter. Fuck it, it
-      looks good  as it  is, and  just overriding  in main
-      project. Commanded  here is  a test  dependency only
-      anyway to make sure it conforms to the behaviour.
-      """
       {:commanded,
         github:   "toraritte/commanded",
         branch:   "make-application-more-idiomatic-2",
